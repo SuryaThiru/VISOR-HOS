@@ -18,7 +18,6 @@ coco = {
     # "categories": [...], 
     # "segment_info": [...]
 }
-
 epick_visor_info = {
     "description": "EPIC-KITCHENS VISOR",
     "url": "https://epic-kitchens.github.io/VISOR/",
@@ -216,7 +215,7 @@ if __name__ == '__main__':
                                 
                             else:
                                 in_contact_object = [x for x in entities if x['id']== in_contact_object_id][0]
-
+                                in_contact_object_class = in_contact_object['class_id']
                                 
                                 # for special glove cases
                                 if args.combine_on_hand_glove_w_hand and in_contact_object['name'] in glove_ls:
@@ -343,7 +342,8 @@ if __name__ == '__main__':
                                                 exhaustive   = in_contact_object['exhaustive'],
                                                 handside     = -1,
                                                 incontact    = -1,
-                                                offset       = [-1, -1, -1]
+                                                offset       = [-1, -1, -1],
+                                                class_id = in_contact_object_class
                                                 )
                                     annot_ls.append(annot)
                                     annot_id += 1             
@@ -390,7 +390,8 @@ if __name__ == '__main__':
                                     
                                 else:
                                     in_contact_object = [x for x in entities if x['id']== in_contact_object_id][0]
-
+                                    in_contact_object_class = in_contact_object["class_id"]
+                                    
                                     o_masks, o_masks_coco, o_bbox_xywh, o_bbox_xyxy, o_area, in_contact_object = get_incontact_object(in_contact_object, h_masks, height=h, width=w, image_path=img_path)
                                     isincontact = 1
                                     if o_bbox_xyxy is not None: 
@@ -437,7 +438,7 @@ if __name__ == '__main__':
                                                     exhaustive   = entity['exhaustive'],
                                                     handside     = handside,    # left:0, right:1
                                                     incontact    = isincontact,
-                                                    offset       = offset
+                                                    offset       = offset,
                                                     )
 
                                         annot_ls.append(annot)
@@ -456,7 +457,7 @@ if __name__ == '__main__':
                                                     exhaustive   = entity['exhaustive'],
                                                     handside     = handside,
                                                     incontact    = isincontact,
-                                                    offset       = offset
+                                                    offset       = offset,
                                                     )
                                         annot_ls.append(annot)
                                         annot_id += 1
@@ -474,7 +475,8 @@ if __name__ == '__main__':
                                                     exhaustive   = in_contact_object['exhaustive'],
                                                     handside     = -1,
                                                     incontact    = -1,
-                                                    offset       = [-1, -1, -1]
+                                                    offset       = [-1, -1, -1],
+                                                    class_id = in_contact_object_class
                                                     )
                                         annot_ls.append(annot)
                                         annot_id += 1
@@ -510,7 +512,7 @@ if __name__ == '__main__':
                                         area         = area,
                                         segmentation = masks_coco,
                                         # additional                                    
-                                        exhaustive   = entity['exhaustive']
+                                        exhaustive   = entity['exhaustive'],
                                        )
 
                             annot_ls.append(annot)

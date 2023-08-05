@@ -13,3 +13,8 @@ backups/
 datasets/
 !hos/data/datasets/
 checkpoints/
+epick_visor_2022_train/
+
+tags
+
+.vscode

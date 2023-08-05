@@ -248,7 +248,8 @@ def add_item(image_id=None,
               exhaustive=None,
               handside=None,
               incontact=None,
-              offset=None
+              offset=None,
+              class_id=None
               ):
     item = {}
     item['id'] = id
@@ -264,6 +265,9 @@ def add_item(image_id=None,
     item['handside'] = handside
     item['isincontact'] = incontact
     item['offset'] = offset
+
+    if class_id:
+        item["class_id"] = class_id
 
     return item
 

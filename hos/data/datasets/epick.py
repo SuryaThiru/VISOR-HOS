@@ -28,6 +28,12 @@ logger = logging.getLogger(__name__)
 __all__ = ["_load_coco_json", "load_sem_seg", "convert_to_coco_json", "register_epick_instances"]
 
 
+def get_image_path(rootdir, imagename):
+    splits = imagename.split("_")
+    subdir = splits[0] + "_" + splits[1]
+    imgpath = os.path.join(rootdir, splits[0], subdir, imagename)
+    return imgpath
+
 def _load_epick_json(json_file, image_root, dataset_name=None, extra_annotation_keys=None):
     """
     Load a json file with COCO's instances annotation format.
@@ -156,7 +162,8 @@ Category ids in annotations are not in [1, #categories]! We'll apply a mapping f
 
     for (img_dict, anno_dict_list) in imgs_anns:
         record = {}
-        record["file_name"] = os.path.join(image_root, img_dict["file_name"])
+        # record["file_name"] = os.path.join(image_root, img_dict["file_name"])
+        record["file_name"] = get_image_path(image_root, img_dict["file_name"])
         record["height"] = img_dict["height"]
         record["width"] = img_dict["width"]
         image_id = record["image_id"] = img_dict["id"]
