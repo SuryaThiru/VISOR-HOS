@@ -266,7 +266,7 @@ def add_item(image_id=None,
     item['isincontact'] = incontact
     item['offset'] = offset
 
-    if class_id:
+    if class_id is not None:
         item["class_id"] = class_id
 
     return item

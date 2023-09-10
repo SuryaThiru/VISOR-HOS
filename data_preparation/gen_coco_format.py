@@ -140,8 +140,7 @@ if __name__ == '__main__':
             print(fsave)
             os.makedirs(os.path.split(fsave)[0], exist_ok=True)          
             json.dump(info, open(fsave, 'w'), indent=4)    
-                        
-            
+
         for json_path in tqdm(json_ls):
             json_path = json_path.replace('annotations', 'annotations_corrected')
             print(split, json_path)
@@ -150,7 +149,6 @@ if __name__ == '__main__':
             vid = json_path.split('/')[-1].split('.')[0]
             img_dir = f'{visor_img_dir}/{split}/{pid}/{vid}'
             
-                
             with open(json_path, 'r') as f:
                 v_annotations = json.load(f)['video_annotations']
                 v_annotations = sorted(v_annotations, key=lambda k: k['image']['image_path'])
@@ -283,7 +281,6 @@ if __name__ == '__main__':
                                         segmentation = h_masks_coco,
                                         # additional                                    
                                         exhaustive   = entity['exhaustive']
-                                  
                                         )
 
                                 annot_ls.append(annot)
@@ -416,7 +413,6 @@ if __name__ == '__main__':
                                             segmentation = h_masks_coco,
                                             # additional                                    
                                             exhaustive   = entity['exhaustive']
-                                    
                                             )
 
                                     annot_ls.append(annot)
